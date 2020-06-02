@@ -1,0 +1,4 @@
+Make use of String API somehow.
+give me a functional menu.
+get user input.
+use stringbuffer or builder somehow.
