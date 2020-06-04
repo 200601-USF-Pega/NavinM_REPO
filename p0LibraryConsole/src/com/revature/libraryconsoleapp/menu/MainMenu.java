@@ -20,7 +20,7 @@ public class MainMenu {
                 case "0":
                     System.out.println("Using Login service.");
                     bootstrapService.checkForAdmin();
-
+                    //login service
                     break;
                 case "1":
                     System.out.println("Exiting the libary application.");
