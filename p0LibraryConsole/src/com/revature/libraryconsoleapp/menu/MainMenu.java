@@ -1,10 +1,13 @@
 package com.revature.libraryconsoleapp.menu;
 
+import com.revature.libraryconsoleapp.dao.UserRepoFile;
+import com.revature.libraryconsoleapp.service.BootstrapService;
+
 import java.util.Scanner;
 
 public class MainMenu {
     private Scanner input = new Scanner(System.in);
-
+    private BootstrapService bootstrapService = new BootstrapService(new UserRepoFile());
     public void start() {
         String userInput;
         do {
@@ -16,6 +19,8 @@ public class MainMenu {
             switch(userInput){
                 case "0":
                     System.out.println("Using Login service.");
+                    bootstrapService.checkForAdmin();
+
                     break;
                 case "1":
                     System.out.println("Exiting the libary application.");
