@@ -2,7 +2,7 @@ class Printer {
     private static int tracker = 0;
 
     //method that needs to be synchornized.
-    public void printCounter(String threadName) {
+    public synchronized void printCounter(String threadName, Thread currentThread) {
         int limit = 0;
         while(!(limit > 20)) {
             System.out.println("Counter:  " + tracker+ " from " + threadName);
@@ -23,8 +23,10 @@ class ThreadDemo extends Thread {
     }
 
     public void run() {
-        PD.printCounter(this.threadName);
+        System.out.println("From thread " + this.threadName + this.isAlive());
+        PD.printCounter(this.threadName, this);
         System.out.println("Thread " +  threadName + " exiting.");
+
     }
 
     public void start () {
@@ -46,10 +48,11 @@ public class TestThread {
 
         // wait for threads to end
         try {
+            //System.out.println(T1.isAlive());
             T1.start();
+            //T1.join();
             T2.start();
-            T1.join();
-            T2.join();
+            //T2.join();
         } catch ( Exception e) {
             System.out.println("Exception.");
         }

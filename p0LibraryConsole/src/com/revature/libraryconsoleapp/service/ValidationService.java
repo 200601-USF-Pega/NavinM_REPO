@@ -9,7 +9,7 @@ public class ValidationService {
     public String getValidStringInput(String prompt) {
         String userInput;
         do {
-            System.out.println(prompt);
+            System.out.print(prompt);
             userInput = input.nextLine();
             if(!userInput.isEmpty()) break;
             System.out.println("Please input non empty string");

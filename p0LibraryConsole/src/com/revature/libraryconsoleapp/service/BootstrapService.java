@@ -22,7 +22,8 @@ public class BootstrapService {
             repo.addUser(user1);
         } else {
             User user = retrievedUsers.get(0);
-            System.out.println("Username " + user.getUserName() + " found.");
+            //System.out.println("Username " + user.getUserName() + " found.");
+            System.out.println("Bootstrap completed.");
         }
 
     }

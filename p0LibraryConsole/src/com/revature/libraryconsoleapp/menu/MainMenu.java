@@ -2,16 +2,21 @@ package com.revature.libraryconsoleapp.menu;
 
 import com.revature.libraryconsoleapp.dao.UserRepoFile;
 import com.revature.libraryconsoleapp.service.BootstrapService;
+import com.revature.libraryconsoleapp.service.LoginService;
+import com.revature.libraryconsoleapp.service.SessionService;
 
 import java.util.Scanner;
 
 public class MainMenu {
     private Scanner input = new Scanner(System.in);
     private BootstrapService bootstrapService = new BootstrapService(new UserRepoFile());
+    private LoginService loginService = new LoginService();
+    private SessionService sessionService = new SessionService();
     public void start() {
         String userInput;
+        bootstrapService.checkForAdmin();
+        System.out.println("Welcome to library app");
         do {
-            System.out.println("Welcome to library app");
             System.out.println("[0] Please login: ");
             System.out.println("[1] Exit: ");
 
@@ -19,10 +24,10 @@ public class MainMenu {
             switch(userInput){
                 case "0":
                     System.out.println("Using Login service.");
-                    bootstrapService.checkForAdmin();
-                    //login service
+                    sessionService.sessionStart(loginService.userLogin());
                     break;
                 case "1":
+                    input.close();
                     System.out.println("Exiting the libary application.");
                     break;
                 default:
@@ -32,4 +37,5 @@ public class MainMenu {
 
         } while(!userInput.equals("1"));
     }
+
 }
