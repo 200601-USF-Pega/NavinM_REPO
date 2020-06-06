@@ -1,0 +1,5 @@
+Implement a calculator
+Use factory design pattern
+User should be able to input values and an operation they want to be done with the values
+Prove it works through unit tests
+Should have some validation

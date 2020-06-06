@@ -9,7 +9,6 @@ import java.util.List;
 public class UserRepoFile implements IUserRepo{
     private String filepath = "src/resources/userTable.txt";
 
-    @Override
     public User addUser(User user) {
         // TODO Auto-generated method stub
         List<User> currentUsers= this.getAllUsers();
@@ -28,7 +27,6 @@ public class UserRepoFile implements IUserRepo{
     }
 
     //finish this method
-    @Override
     public List<User> getAllUsers() {
         // TODO Auto-generated method stub
         try {
