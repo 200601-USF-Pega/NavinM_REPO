@@ -2,40 +2,41 @@ package com.revature.libraryconsoleapp.menu;
 
 import com.revature.libraryconsoleapp.dao.UserRepoFile;
 import com.revature.libraryconsoleapp.service.BootstrapService;
-import com.revature.libraryconsoleapp.service.LoginService;
-import com.revature.libraryconsoleapp.service.SessionService;
 
 import java.util.Scanner;
 
-public class MainMenu {
+public class MainMenu implements IMenu{
     private Scanner input = new Scanner(System.in);
-    private BootstrapService bootstrapService = new BootstrapService(new UserRepoFile());
-    private LoginService loginService = new LoginService();
-    private SessionService sessionService = new SessionService();
+//    private LoginMenu loginMenu = new LoginMenu();
     public void start() {
         String userInput;
-        bootstrapService.checkForAdmin();
         System.out.println("Welcome to library app");
-        do {
+        MenuFactory menuFactory = new MenuFactory();
+        IMenu currentMenu;
+
+        while(true){
             System.out.println("[0] Please login: ");
             System.out.println("[1] Exit: ");
 
             userInput = input.nextLine();
+
             switch(userInput){
                 case "0":
                     System.out.println("Using Login service.");
-                    sessionService.sessionStart(loginService.userLogin());
+                    currentMenu = menuFactory.changeMenu("login_menu");
+                    currentMenu.start();
                     break;
                 case "1":
-                    input.close();
                     System.out.println("Exiting the libary application.");
+                    input.close();
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Invalid input please try again");
             }
 
 
-        } while(!userInput.equals("1"));
+        }
     }
 
 }

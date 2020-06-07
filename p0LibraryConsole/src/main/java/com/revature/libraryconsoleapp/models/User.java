@@ -7,7 +7,7 @@ public class User implements Serializable {
     private String pwd;
     private String firstName;
     private String lastName;
-    private Access acess;
+    private Access access;
     //private Access acess = Access.USER;
     //enum for the type of user.
 
@@ -15,12 +15,12 @@ public class User implements Serializable {
 
     }
 
-    public User(String userName, String pwd, String firstName, String lastName, Access acess) {
+    public User(String userName, String pwd, String firstName, String lastName, Access access) {
         this.userName = userName;
         this.pwd = pwd;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.acess = acess;
+        this.access = access;
     }
 
     public String getUserName() {
@@ -55,11 +55,11 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public Access getAcess() {
-        return acess;
+    public Access getAccess() {
+        return access;
     }
 
-    public void setAcess(Access acess) {
-        this.acess = acess;
+    public void setAccess(Access access) {
+        this.access = access;
     }
 }

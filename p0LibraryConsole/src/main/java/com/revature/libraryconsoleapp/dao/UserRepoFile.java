@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepoFile implements IUserRepo{
-    private String filepath = "src/resources/userTable.txt";
+    private String filepath = "src/main/resources/userTable.txt";
 
     public User addUser(User user) {
         // TODO Auto-generated method stub

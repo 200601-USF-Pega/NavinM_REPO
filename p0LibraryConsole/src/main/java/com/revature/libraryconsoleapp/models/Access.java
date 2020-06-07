@@ -1,5 +1,5 @@
 package com.revature.libraryconsoleapp.models;
 
 public enum Access {
-    ADMIN, USER
+    ADMIN, PATRON
 }
