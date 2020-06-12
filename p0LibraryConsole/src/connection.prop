@@ -1,0 +1,4 @@
+hostname=jdbc:mysql://library-console.cqyl9x528xpu.us-east-1.rds.amazonaws.com:3306/library
+username=admin
+password=Library_Console
+

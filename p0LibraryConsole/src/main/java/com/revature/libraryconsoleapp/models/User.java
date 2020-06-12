@@ -62,4 +62,15 @@ public class User implements Serializable {
     public void setAccess(Access access) {
         this.access = access;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", access=" + access +
+                '}';
+    }
 }
