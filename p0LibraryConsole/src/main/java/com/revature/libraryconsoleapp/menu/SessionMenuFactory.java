@@ -15,6 +15,10 @@ public class SessionMenuFactory {
           case PATRON:
               sessionMenu = new PatronMenu();
               break;
+
+          case BANNED:
+              System.out.println("you are banned");
+              break;
       }
       return sessionMenu;
     }

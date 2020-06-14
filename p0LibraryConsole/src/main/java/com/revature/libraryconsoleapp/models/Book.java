@@ -2,15 +2,12 @@ package com.revature.libraryconsoleapp.models;
 
 public class Book {
 
-    //private Long id
     private String title;
-    private String isbn;
-    private String author;
+    private Author  author;
     private String category;
 
-    public Book(String title, String isbn, String author, String category) {
+    public Book(String title, Author author, String category) {
         this.title = title;
-        this.isbn = isbn;
         this.author = author;
         this.category = category;
     }
@@ -23,19 +20,12 @@ public class Book {
         this.title = title;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
@@ -45,5 +35,14 @@ public class Book {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author=" + author.toString() +
+                ", category='" + category + '\'' +
+                '}';
     }
 }

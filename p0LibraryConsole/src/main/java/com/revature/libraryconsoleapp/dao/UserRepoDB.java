@@ -13,17 +13,15 @@ import java.util.List;
 
 public class UserRepoDB implements IUserRepo{
 
+    //ConnectionService connectionService;
 
-    ConnectionService connectionService;
-
-    public UserRepoDB (ConnectionService connectionService) {
-        this.connectionService = connectionService;
-    }
+    public UserRepoDB (){}
 
     @Override
     public User addUser(User user) {
         try {
-            PreparedStatement userStatement = connectionService.getConnection().prepareStatement(
+            PreparedStatement userStatement = ConnectionService.getInstance().getConnection()
+                    .prepareStatement(
                     "INSERT INTO Users VALUES (?, ?, ?, ?, ?)");
                     userStatement.setString(1, user.getUserName());
                     userStatement.setString(2, user.getPwd());
@@ -43,7 +41,7 @@ public class UserRepoDB implements IUserRepo{
     public List<User> getAllUsers() {
         List<User> allUsers = new ArrayList();
         try {
-            Statement userStatement = connectionService.getConnection().createStatement();
+            Statement userStatement = ConnectionService.getInstance().getConnection().createStatement();
             userStatement.executeQuery("SELECT * from Users;");
             ResultSet rs = userStatement.getResultSet();
             while (rs.next()) {

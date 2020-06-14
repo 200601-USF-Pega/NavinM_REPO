@@ -8,11 +8,12 @@ import java.util.Properties;
 
 public class ConnectionService {
 
+    private static ConnectionService  connectionSingleton = null;
     private Connection connection;
 
     public ConnectionService() {
         try  {
-            FileInputStream fis = new FileInputStream("src/connection.prop");
+            FileInputStream fis = new FileInputStream("connection.prop");
             Properties p = new Properties();
             p.load(fis);
             connection = DriverManager.getConnection(p.getProperty("hostname"),
@@ -25,6 +26,14 @@ public class ConnectionService {
 
     public Connection getConnection() {
         return connection;
+    }
+
+    public static ConnectionService getInstance() {
+       if(connectionSingleton == null) {
+           connectionSingleton = new ConnectionService();
+           System.out.println("Connection started.");
+       }
+       return connectionSingleton;
     }
 
     @Override

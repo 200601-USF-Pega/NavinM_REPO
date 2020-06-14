@@ -32,6 +32,8 @@ public class AdminMenu implements ISessionMenu {
                    currentMenu.start();
                 case "3":
                 case "4":
+                    currentMenu = menuFactory.changeMenu("add_books");
+                    currentMenu.start();
                 case "5":
                 case "x":
                     currentMenu = menuFactory.changeMenu("main_menu");

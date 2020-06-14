@@ -18,6 +18,9 @@ public class MenuFactory {
             case "show_all_users":
                 newMenu = new ShowAllUserMenu();
                 break;
+            case "add_books":
+                newMenu = new AddBooksMenu();
+                break;
             /**
              *
             case "admin_menu":

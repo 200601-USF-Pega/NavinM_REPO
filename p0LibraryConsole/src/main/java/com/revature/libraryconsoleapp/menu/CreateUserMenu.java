@@ -7,6 +7,7 @@ import com.revature.libraryconsoleapp.service.ConnectionService;
 import com.revature.libraryconsoleapp.service.ValidationService;
 
 import java.sql.Connection;
+import java.util.List;
 
 public class CreateUserMenu implements IMenu{
     private String userName;
@@ -16,7 +17,7 @@ public class CreateUserMenu implements IMenu{
     private String access;
     private ValidationService validationService  = new ValidationService();
     private ConnectionService connectionService = new ConnectionService();
-    private UserRepoDB userRepoDB= new UserRepoDB(connectionService);
+    private UserRepoDB userRepoDB= new UserRepoDB();
 
     //private MenuFactory menuFactory = new MenuFactory();
     //private IMenu currentMenu;
@@ -35,4 +36,7 @@ public class CreateUserMenu implements IMenu{
         System.out.println("User created and pushed to the db.");
 
     }
+
+
 }
+

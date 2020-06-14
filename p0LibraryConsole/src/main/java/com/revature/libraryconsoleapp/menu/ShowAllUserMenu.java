@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ShowAllUserMenu implements IMenu{
     private ConnectionService connectionService = new ConnectionService();
-    private UserRepoDB userRepoDB= new UserRepoDB(connectionService);
+    private UserRepoDB userRepoDB= new UserRepoDB();
 
     @Override
     public void start() {

@@ -43,4 +43,13 @@ public class ValidationService {
         return Boolean.parseBoolean(userInput);
 
     }
+
+    public boolean trueIfNotHappy (int input , int size){
+        if (input > size || input <=0){
+            System.out.println("Please enter a valid option");
+            return true;
+        }
+        return false;
+    }
+
 }
