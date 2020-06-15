@@ -1,6 +1,5 @@
 package com.revature.libraryconsoleapp.menu;
 
-import com.revature.libraryconsoleapp.dao.AuthorRepoDB;
 import com.revature.libraryconsoleapp.dao.BookRepoDB;
 import com.revature.libraryconsoleapp.models.Author;
 import com.revature.libraryconsoleapp.models.Book;
@@ -10,7 +9,7 @@ import com.revature.libraryconsoleapp.service.ValidationService;
 
 import java.util.List;
 
-public class AddBooksMenu implements IMenu {
+public class BooksListingMenu implements IMenu {
     //MenuFactory menuFactory = new MenuFactory();
     //IMenu currentMenu;
     private ValidationService validationService = new ValidationService();

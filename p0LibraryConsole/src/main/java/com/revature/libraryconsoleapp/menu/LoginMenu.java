@@ -18,7 +18,7 @@ public class LoginMenu implements IMenu {
         User userFound= loginService.checkForUser(userName, password);
         if(userFound != null) {
             System.out.printf("The user %s is logged in.\n", userFound.getUserName());
-            userMenu = sessionMenuFactory.createSession(userFound);
+            userMenu = sessionMenuFactory.changeMenu("user_main_menu", userFound);
             userMenu.start();
 
         } else { //this goes to the main menu.

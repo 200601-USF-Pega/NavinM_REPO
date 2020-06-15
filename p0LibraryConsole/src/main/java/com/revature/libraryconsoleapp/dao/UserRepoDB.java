@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserRepoDB implements IUserRepo{
 
@@ -38,6 +40,40 @@ public class UserRepoDB implements IUserRepo{
     }
 
     @Override
+    public void deleteUser(User user) {
+        String userName = user.getUserName();
+        try {
+            PreparedStatement deleteStatement = ConnectionService.getInstance().getConnection().
+                    prepareStatement(
+                           "DELETE FROM Users WHERE user_name = ?");
+            deleteStatement.setString(1, userName);
+            deleteStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Excepiton: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+    public boolean doesUserExist(User user) {
+       String userMame = user.getUserName();
+       try {
+         PreparedStatement userStatement = ConnectionService.getInstance().getConnection().
+                 prepareStatement(
+                         "SELECT user_name FROM Users WHERE user_name = ? ;"
+                 );
+         userStatement.setString(1, userMame);
+         userStatement.executeQuery();
+         ResultSet rs = userStatement.getResultSet();
+         String str =  rs.getString("user_name");
+         return true;
+       } catch (SQLException e) {
+           System.out.println("Excepiton: " + e.getMessage());
+           e.printStackTrace();
+       }
+       return false;
+    }
+    @Override
     public List<User> getAllUsers() {
         List<User> allUsers = new ArrayList();
         try {
@@ -60,5 +96,49 @@ public class UserRepoDB implements IUserRepo{
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void updatePassword(String userName, String password) {
+        try{
+           Statement updatePasswordStatement = ConnectionService.getInstance().getConnection().createStatement();
+           updatePasswordStatement.executeUpdate("UPDATE Users SET pwd = \"" + password + "\" WHERE user_name = \"" + userName+"\";");
+
+        } catch (SQLException e) {
+            System.out.println("Exception: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void updateFirstName(String userName, String firstName) {
+        try{
+            Statement updatePasswordStatement = ConnectionService.getInstance().getConnection().createStatement();
+            updatePasswordStatement.executeUpdate("UPDATE Users SET first_name= \"" + firstName+ "\" WHERE user_name = \"" + userName+"\";");
+
+        } catch (SQLException e) {
+            System.out.println("Exception: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void updateLastName(String userName, String lastName) {
+        try{
+            Statement updatePasswordStatement = ConnectionService.getInstance().getConnection().createStatement();
+            updatePasswordStatement.executeUpdate("UPDATE Users SET last_name= \"" + lastName+ "\" WHERE user_name = \"" + userName+"\";");
+
+        } catch (SQLException e) {
+            System.out.println("Exception: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void updateAccess(String userName, String access) {
+        try{
+            Statement updatePasswordStatement = ConnectionService.getInstance().getConnection().createStatement();
+            updatePasswordStatement.executeUpdate("UPDATE Users SET access = \"" + access+ "\" WHERE user_name = \"" + userName+"\";");
+
+        } catch (SQLException e) {
+            System.out.println("Exception: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface IUserRepo {
     public User addUser(User user);
+    public void deleteUser(User user);
     public List<User> getAllUsers();
 }

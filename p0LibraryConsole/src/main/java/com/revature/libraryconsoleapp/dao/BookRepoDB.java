@@ -1,5 +1,6 @@
 package com.revature.libraryconsoleapp.dao;
 
+import com.revature.libraryconsoleapp.models.Author;
 import com.revature.libraryconsoleapp.models.Book;
 import com.revature.libraryconsoleapp.service.ConnectionService;
 
@@ -7,6 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BookRepoDB {
     public BookRepoDB() {}
@@ -62,6 +67,32 @@ public class BookRepoDB {
             System.out.println("Exception: " + e.getMessage());
         }
         return categoryID;
+    }
+
+    public Map<Integer, Book> getAllBooks() {
+        Map<Integer, Book> bookIDMap = new HashMap<>();
+        try{
+           Statement getAllBookStatement = ConnectionService.getInstance().getConnection().createStatement();
+           getAllBookStatement.executeQuery("select Books.book_id, Books.title, Authors.first_name, Authors.last_name, Category.category\n" +
+                   "from Books\n" +
+                   "INNER JOIN Authors on Books.author_id = Authors.author_id \n" +
+                   "INNER JOIN Category on Books.category_id = Category.category_id;");
+           ResultSet rs = getAllBookStatement.getResultSet();
+
+           while (rs.next()) {
+               Book book = new Book();
+               book.setTitle(rs.getString("title"));
+               book.setAuthor(new Author(rs.getString("first_name"), rs.getString("last_name")));
+               book.setCategory(rs.getString("category"));
+               int book_id = Integer.parseInt(rs.getString("book_id"));
+               bookIDMap.put(book_id, book);
+           }
+           return bookIDMap;
+        } catch (SQLException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+
+        return null;
     }
 
 

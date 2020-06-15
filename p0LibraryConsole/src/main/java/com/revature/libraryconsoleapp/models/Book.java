@@ -6,6 +6,7 @@ public class Book {
     private Author  author;
     private String category;
 
+    public Book() {}
     public Book(String title, Author author, String category) {
         this.title = title;
         this.author = author;

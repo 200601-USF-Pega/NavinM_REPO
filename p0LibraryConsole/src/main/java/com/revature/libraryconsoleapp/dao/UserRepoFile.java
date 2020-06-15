@@ -26,6 +26,11 @@ public class UserRepoFile implements IUserRepo{
         return null;
     }
 
+    @Override
+    public void deleteUser(User user) {
+
+    }
+
     //finish this method
     public List<User> getAllUsers() {
         // TODO Auto-generated method stub

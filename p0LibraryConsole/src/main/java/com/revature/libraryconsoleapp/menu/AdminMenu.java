@@ -1,48 +1,55 @@
 package com.revature.libraryconsoleapp.menu;
 
 
-import java.awt.*;
+import com.revature.libraryconsoleapp.models.User;
+
 import java.util.Scanner;
 
 public class AdminMenu implements ISessionMenu {
 
+    private User user;
+
+    public AdminMenu(User user) {
+        this.user = user;
+    }
+
     @Override
     public void start() {
         Scanner input = new Scanner(System.in);
+        ViewClass.printSessionHeader("Admin", user);
         System.out.println("Options");
-        System.out.println("1. Create User\n" +
-                "2. Look at all the users\n" +
-                "3. Look at borrowed books\n" +
-                "4. Add Books \n" +
-                "5. Create Books\n" +
-                "6. Delete Books\n" +
-                "x. Logout.");
+        System.out.println(
+                "[1] User Management\n" +
+                "[2] Inventory/Book Management\n" +
+                "[3] Other Actions\n" +
+                "[x] LOGOUT."
+        );
 
-        MenuFactory menuFactory = new MenuFactory();
-        IMenu currentMenu;
+        SessionMenuFactory sessionMenuFactory = new SessionMenuFactory();
+        IMenu currentMenu; // note.
 
         while(true) {
             String userInput = input.nextLine().toLowerCase();
             switch(userInput) {
                 case "1":
-                   currentMenu = menuFactory.changeMenu("create_user");
+                   currentMenu = sessionMenuFactory.changeMenu("user_management", user);
                    currentMenu.start();
+                   break;
                 case "2":
-                   currentMenu = menuFactory.changeMenu("show_all_users");
-                   currentMenu.start();
-                case "3":
-                case "4":
-                    currentMenu = menuFactory.changeMenu("add_books");
+                    currentMenu = sessionMenuFactory.changeMenu("inventory_book_management", user);
                     currentMenu.start();
-                case "5":
+                   break;
+                case "3":
+                    currentMenu = sessionMenuFactory.changeMenu("other_actions", user);
+                    currentMenu.start();
+                    break;
                 case "x":
-                    currentMenu = menuFactory.changeMenu("main_menu");
+                    currentMenu = new MainMenu();
                     currentMenu.start();
                     break;
                 default:
-                    System.out.println("Press the given options.");
+                    System.out.println("Please press the given option inside the [''].");
             }
-
         }
     }
 }
