@@ -10,7 +10,7 @@ public class MainMenu implements IMenu{
 //    private LoginMenu loginMenu = new LoginMenu();
     public void start() {
         String userInput;
-        System.out.println("Welcome to library app");
+        ViewClass.printWelcomeScreen("Console Library App. Version 1.0");
         MenuFactory menuFactory = new MenuFactory();
         IMenu currentMenu;
 
@@ -22,12 +22,11 @@ public class MainMenu implements IMenu{
 
             switch(userInput){
                 case "0":
-                    System.out.println("Using Login service.");
                     currentMenu = menuFactory.changeMenu("login_menu");
                     currentMenu.start();
                     break;
                 case "1":
-                    System.out.println("Exiting the libary application.");
+                    System.out.println("Exiting the library application.");
                     input.close();
                     System.exit(0);
                     break;

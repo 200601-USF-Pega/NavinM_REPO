@@ -32,7 +32,8 @@ public class DeleteUserMenu implements ISessionMenu {
         List<User> users = userRepoDB.getAllUsers();
         ViewClass.UserListView(users);
 
-        int inputIndex = validationService.getValidInt("Enter the number [] which user you to delete");
+        int inputIndex = validationService.getValidIntChoice("Enter the number [] which user you to delete", users.size());
+
         User selectedUser = users.get(inputIndex);
         userRepoDB.deleteUser(selectedUser);
         System.out.println("Deleted the user " + selectedUser.getUserName() + ".");

@@ -13,9 +13,12 @@ public class LoginMenu implements IMenu {
     private ISessionMenu userMenu;
 
     public void start() {
+        ViewClass.printSessionHeader("Login");
         userName = validationService.getValidStringInput("Please enter your username: ");
         password = validationService.getValidStringInput("Please enter your password: ");
         User userFound= loginService.checkForUser(userName, password);
+        //System.out.println(userFound);
+
         if(userFound != null) {
             System.out.printf("The user %s is logged in.\n", userFound.getUserName());
             userMenu = sessionMenuFactory.changeMenu("user_main_menu", userFound);

@@ -50,6 +50,28 @@ public class AuthorRepoDB {
         return null;
     }
 
+    public void updateFirstName(int authorID, String firstName) {
+        try{
+            Statement updatePasswordStatement = ConnectionService.getInstance().getConnection().createStatement();
+            updatePasswordStatement.executeUpdate("UPDATE Authors SET first_name= \"" + firstName+ "\" WHERE author_id= \"" + authorID+"\";");
+
+        } catch (SQLException e) {
+            System.out.println("Exception: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void updateLastName(int authorID, String lastName) {
+        try{
+            Statement updatePasswordStatement = ConnectionService.getInstance().getConnection().createStatement();
+            updatePasswordStatement.executeUpdate("UPDATE Authors SET last_name= \"" + lastName+ "\" WHERE author_id= \"" + authorID +"\";");
+
+        } catch (SQLException e) {
+            System.out.println("Exception: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 }
 
 

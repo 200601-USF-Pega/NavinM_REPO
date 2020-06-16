@@ -55,18 +55,17 @@ public class UserRepoDB implements IUserRepo{
     }
 
 
-    public boolean doesUserExist(User user) {
-       String userMame = user.getUserName();
+    public boolean doesUserExist(String userName) {
        try {
-         PreparedStatement userStatement = ConnectionService.getInstance().getConnection().
-                 prepareStatement(
-                         "SELECT user_name FROM Users WHERE user_name = ? ;"
-                 );
-         userStatement.setString(1, userMame);
-         userStatement.executeQuery();
-         ResultSet rs = userStatement.getResultSet();
-         String str =  rs.getString("user_name");
-         return true;
+           Statement userStatement = ConnectionService.getInstance().getConnection().createStatement();
+           userStatement.executeQuery("SELECT user_name FROM Users WHERE user_name = \""+userName+"\" ;");
+           ResultSet rs = userStatement.getResultSet();
+           if (rs.next()) {
+               return true;
+           } else {
+               return false;
+           }
+
        } catch (SQLException e) {
            System.out.println("Excepiton: " + e.getMessage());
            e.printStackTrace();

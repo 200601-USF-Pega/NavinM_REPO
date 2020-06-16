@@ -16,9 +16,9 @@ public class InventoryMenu implements IMenu{
             String userInput = validationService.getValidStringInput("").toLowerCase();
             switch(userInput) {
                 case "1":
-
-
-
+                    break;
+                default:
+                    break;
             }
         }
     }

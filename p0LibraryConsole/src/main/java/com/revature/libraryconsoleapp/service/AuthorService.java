@@ -55,10 +55,12 @@ public class AuthorService {
         }
 
         private Author createAuthor(){
-            String firstName= validationService.getValidStringInput("Please enter the author's first name: ");
-            String lastName= validationService.getValidStringInput("Please enter the author's last name: ") ;
+            String firstName= validationService.getValidNameInput("Please enter the author's first name: ");
+            String lastName= validationService.getValidNameInput("Please enter the author's last name: ") ;
             return new Author(firstName, lastName);
         }
+
+
 
 
 }

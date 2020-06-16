@@ -1,6 +1,7 @@
 package com.revature.libraryconsoleapp.service;
 
 import com.revature.libraryconsoleapp.dao.IUserRepo;
+import com.revature.libraryconsoleapp.dao.UserRepoDB;
 import com.revature.libraryconsoleapp.dao.UserRepoFile;
 import com.revature.libraryconsoleapp.models.User;
 
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 public class LoginService {
    private ValidationService inputValidation = new ValidationService();
-   private IUserRepo repo = new UserRepoFile();
+   private IUserRepo repo = new UserRepoDB();
 
 
    public LoginService() {

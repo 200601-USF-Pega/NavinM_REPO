@@ -1,8 +1,10 @@
-package com.revature.libraryconsoleapp.menu;
+package com.revature.libraryconsoleapp.menu.adminMenus;
 
 
+import com.revature.libraryconsoleapp.menu.*;
 import com.revature.libraryconsoleapp.models.User;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class AdminMenu implements ISessionMenu {
@@ -44,6 +46,7 @@ public class AdminMenu implements ISessionMenu {
                     currentMenu.start();
                     break;
                 case "x":
+                    System.out.println("The user " + user.getUserName() + " has logged out.");
                     currentMenu = new MainMenu();
                     currentMenu.start();
                     break;
